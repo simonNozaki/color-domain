@@ -1,24 +1,19 @@
 package io.example.color.usecase
 
 import io.example.color.domain.model.Color
-import io.example.color.domain.model.Color.ColorMixInRequest
-import io.example.color.domain.model.Color.ColorMixInResponse
 import io.example.color.infrastructure.exception.BadRequestException
+import io.example.color.presentation.dto.ColorMixInRequest
 import org.springframework.stereotype.Service
 
 /**
- * 混色サービス
+ * ユースケース: 色を混ぜる
  */
 @Service
-class ColorMixInService {
+class MixInColorUseCase {
 
-    fun execute(req: ColorMixInRequest): ColorMixInResponse {
-        // 変換チェック
-        if (!req.isConvertable()) {
-            throw BadRequestException("オブジェクトの変換に失敗")
-        }
-
+    fun execute(req: ColorMixInRequest): Color {
         // 16進数形式チェック
+        // 色が16進数2桁であることはドメイン知識なのでドメイン層で対処する
         val mixedIn = Color(req.mixedIn)
         val mixingIn = Color(req.mixingIn)
         if ((mixedIn.isColorHex() && mixingIn.isColorHex())) {
@@ -26,6 +21,6 @@ class ColorMixInService {
         }
 
         // 混色、レスポンス化
-        return mixedIn.mixIn(mixingIn).toResponse()
+        return mixedIn.mixIn(mixingIn)
     }
 }

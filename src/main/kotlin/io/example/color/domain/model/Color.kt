@@ -1,6 +1,5 @@
 package io.example.color.domain.model
 
-import io.example.color.infrastructure.Dto
 
 /**
  * 色を表現する値オブジェクト
@@ -26,36 +25,6 @@ data class Color (
         this.blue =  hexStr.substring(4, 6)
     }
 
-    /**
-     * 混色リクエストDTO。
-     */
-    data class ColorMixInRequest (
-        /**
-         * 混ぜられる色
-         */
-        var mixedIn: String,
-
-        /**
-         * 混ぜる色
-         */
-        var mixingIn: String
-    ): Dto {
-        /**
-         * Colorオブジェクトに変換できることを確認する
-         */
-        fun isConvertable(): Boolean {
-            if (this.mixedIn.isEmpty() || this.mixedIn.length != 6) return false
-            if (this.mixingIn.isEmpty() || this.mixingIn.length != 6) return false
-            return true
-        }
-    }
-
-    /**
-     * 混色レスポンスDTO
-     */
-    data class ColorMixInResponse (
-        var newColor: String
-    ): Dto
 
     /**
      * 3色とも16進数2桁の色表現となっている
@@ -75,10 +44,6 @@ data class Color (
         if (notHexes > 0) return false
 
         return true
-    }
-
-    fun toResponse(): ColorMixInResponse {
-        return ColorMixInResponse(this.red + this.green + this.blue)
     }
 
     /**
