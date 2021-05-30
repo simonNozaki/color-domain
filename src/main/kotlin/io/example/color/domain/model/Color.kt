@@ -19,13 +19,6 @@ data class Color (
     var blue: String
 ) {
 
-    constructor(hexStr: String) : this("", "", "") {
-        this.red =   hexStr.substring(0, 2)
-        this.green = hexStr.substring(2, 4)
-        this.blue =  hexStr.substring(4, 6)
-    }
-
-
     /**
      * 3色とも16進数2桁の色表現となっている
      */
@@ -69,4 +62,11 @@ data class Color (
 
         return Integer.toHexString(result)
     }
+}
+
+/**
+ * ドメインオブジェクトのファクトリメソッド
+ */
+fun colorOf(r: String, g: String, b: String): Color {
+    return Color(r, g, b)
 }
