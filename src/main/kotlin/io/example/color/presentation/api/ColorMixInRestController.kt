@@ -25,7 +25,7 @@ class ColorMixInRestController(private val mixInColorUseCase: MixInColorUseCase)
     )
     fun execute(@RequestBody req: ColorMixInRequest): ColorMixInResponse {
         // 変換判定
-        if (!req.isConvertable()) {
+        if (!req.canConvert()) {
             throw BadRequestException("オブジェクトの変換に失敗")
         }
 
@@ -36,7 +36,7 @@ class ColorMixInRestController(private val mixInColorUseCase: MixInColorUseCase)
      * Colorオブジェクトに変換できることを確認する拡張関数
      * 変換可能性判定は本質的にドメイン知識と関わりが薄いのでPresentation層で扱ってしまう
      */
-    private fun ColorMixInRequest.isConvertable(): Boolean {
+    private fun ColorMixInRequest.canConvert(): Boolean {
         if (this.mixedIn.isEmpty() || this.mixedIn.length != 6) return false
         if (this.mixingIn.isEmpty() || this.mixingIn.length != 6) return false
         return true
@@ -47,7 +47,7 @@ class ColorMixInRestController(private val mixInColorUseCase: MixInColorUseCase)
      * ドメイン知識とは無関係なのでpresentationで扱う
      */
     private fun Color.toResponse(): ColorMixInResponse {
-        return ColorMixInResponse(this.red + this.green + this.blue)
+        return ColorMixInResponse(this.red.value + this.green.value + this.blue.value)
     }
 
 }
