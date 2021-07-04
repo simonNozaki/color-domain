@@ -5,21 +5,21 @@ import io.example.color.infrastructure.Dto
 /**
  * 混色リクエストDTO。
  */
-data class ColorMixInRequest (
+data class AddColorRequest (
     /**
      * 混ぜられる色
      */
-    var mixedIn: String,
+    var base: String,
 
     /**
      * 混ぜる色
      */
-    var mixingIn: String
+    var adding: String
 ): Dto
 
 /**
  * 混色レスポンスDTO
  */
-data class ColorMixInResponse (
+data class AddColorResponse (
     var newColor: String
 ): Dto
