@@ -18,18 +18,18 @@ class AddColorUseCase {
     fun execute(req: AddColorRequest): Color {
         // 16進数形式チェック
         // 色が16進数2桁であることはドメイン知識なのでドメイン層で対処する
-        val mixedIn = Color(
+        val base = Color(
             RgbSaturation(req.base.substring(0, 2)),
             RgbSaturation(req.base.substring(2, 4)),
             RgbSaturation(req.base.substring(4, 6))
         )
-        val mixingIn = Color(
+        val adding = Color(
             RgbSaturation(req.adding.substring(0, 2)),
             RgbSaturation(req.adding.substring(2, 4)),
             RgbSaturation(req.adding.substring(4, 6))
         )
 
         // 混色、レスポンス化
-        return mixedIn.add(mixingIn)
+        return base.add(adding)
     }
 }

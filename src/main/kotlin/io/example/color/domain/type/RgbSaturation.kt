@@ -14,7 +14,7 @@ value class RgbSaturation (
     // ガード節
     init {
         if (this.value.isEmpty() || this.value.length != 2) {
-            throw IllegalArgumentException("R, G, Bの任意の桁数が指定されていません")
+            throw IllegalArgumentException("validation.model.rgb_saturation.empty")
         }
 
         val notHexes = listOf(this.value.substring(0, 1), this.value.substring(1, 2))
@@ -23,7 +23,7 @@ value class RgbSaturation (
 
         // 1個でも16進数ではない文字がある
         if (notHexes > 0) {
-            throw IllegalArgumentException("R, G, Bが16進数形式ではありません")
+            throw IllegalArgumentException("validation.model.rgb_saturation.not_hex_format")
         }
     }
 
