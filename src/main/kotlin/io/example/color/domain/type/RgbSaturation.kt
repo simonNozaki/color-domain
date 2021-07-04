@@ -32,11 +32,25 @@ value class RgbSaturation (
      * @param hex 16進数形式の色
      */
     fun add(hex: RgbSaturation): RgbSaturation {
-        val colorHex1 = hex.value.toInt(16)
-        val colorHex2 = hex.value.toInt(16)
+        val base = this.value.toInt(16)
+        val hex = hex.value.toInt(16)
 
-        val result = if(colorHex1 + colorHex2 > "FF".toInt(16)) "FF".toInt(16) else colorHex1 + colorHex2
+        val result = if(base + hex > "FF".toInt(16)) "FF".toInt(16) else base + hex
 
         return RgbSaturation(Integer.toHexString(result))
+    }
+
+    /**
+     * 色要素を混ぜる、減法混色
+     * @param hex 16進数形式の色
+     */
+    fun subtract(hex: RgbSaturation): RgbSaturation {
+        val base = this.value.toInt(16)
+        val hex = hex.value.toInt(16)
+
+        val result = if(base - hex < "00".toInt(16)) "00".toInt(16) else base - hex
+        val hexString = Integer.toHexString(result)
+
+        return RgbSaturation(hexString)
     }
 }
