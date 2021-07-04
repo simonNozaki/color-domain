@@ -21,6 +21,9 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
+	implementation("org.springframework.data:spring-data-r2dbc:1.3.2")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
