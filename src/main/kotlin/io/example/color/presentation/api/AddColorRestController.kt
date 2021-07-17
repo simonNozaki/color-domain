@@ -49,5 +49,4 @@ class AddColorRestController(private val addColorUseCase: AddColorUseCase) {
     private fun Color.toResponse(): AddColorResponse {
         return AddColorResponse(this.red.value + this.green.value + this.blue.value)
     }
-
 }

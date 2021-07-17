@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
  * 受注REST Controller
  */
 @RestController
-class OrderClothesRestController (private val orderClothesUseCase: OrderClothesUseCase) {
+class OrderClothesRestController(private val orderClothesUseCase: OrderClothesUseCase) {
 
     @RequestMapping(
         value = ["order/cloth"],

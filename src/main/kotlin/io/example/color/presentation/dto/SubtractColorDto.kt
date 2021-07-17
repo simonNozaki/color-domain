@@ -6,7 +6,7 @@ import java.io.Serializable
 /**
  * 減法混色リクエスト
  */
-data class SubtractColorRequest (
+data class SubtractColorRequest(
     /**
      * 混ぜられる色
      */
@@ -16,12 +16,11 @@ data class SubtractColorRequest (
      * 混ぜる色
      */
     var subtracting: String
-): Dto, Serializable
-
+) : Dto, Serializable
 
 /**
  * 減法混色レスポンス
  */
-class SubtractColorResponse (
+class SubtractColorResponse(
     val newColor: String
 )

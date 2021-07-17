@@ -7,9 +7,9 @@ import java.lang.IllegalArgumentException
  * 16進数表記の色の要素となる。
  */
 @JvmInline
-value class RgbSaturation (
+value class RgbSaturation(
     val value: String
-        ) {
+) {
 
     // ガード節
     init {
@@ -33,9 +33,9 @@ value class RgbSaturation (
      */
     fun add(hex: RgbSaturation): RgbSaturation {
         val base = this.value.toInt(16)
-        val hex = hex.value.toInt(16)
+        val hexInt = hex.value.toInt(16)
 
-        val result = if(base + hex > "FF".toInt(16)) "FF".toInt(16) else base + hex
+        val result = if (base + hexInt > "FF".toInt(16)) "FF".toInt(16) else base + hexInt
 
         return RgbSaturation(Integer.toHexString(result))
     }
@@ -46,9 +46,9 @@ value class RgbSaturation (
      */
     fun subtract(hex: RgbSaturation): RgbSaturation {
         val base = this.value.toInt(16)
-        val hex = hex.value.toInt(16)
+        val hexInt = hex.value.toInt(16)
 
-        val result = if(base - hex < "00".toInt(16)) "00".toInt(16) else base - hex
+        val result = if (base - hexInt < "00".toInt(16)) "00".toInt(16) else base - hexInt
         val hexString = Integer.toHexString(result)
 
         return RgbSaturation(hexString)

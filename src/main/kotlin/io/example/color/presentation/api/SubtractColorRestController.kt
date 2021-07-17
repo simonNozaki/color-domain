@@ -1,6 +1,5 @@
 package io.example.color.presentation.api
 
-import io.example.color.presentation.dto.AddColorRequest
 import io.example.color.presentation.dto.SubtractColorRequest
 import io.example.color.presentation.dto.SubtractColorResponse
 import io.example.color.usecase.SubtractColorUseCase
