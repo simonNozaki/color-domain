@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.5.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    id("com.github.roroche.plantuml") version "1.0.2"
     id("org.jetbrains.dokka") version "1.5.0"
     kotlin("jvm") version "1.5.20"
     kotlin("plugin.spring") version "1.5.20"
@@ -37,4 +36,13 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.dokkaHtml.configure {
+    outputDirectory.set(buildDir.resolve("docs"))
+    dokkaSourceSets {
+        configureEach {
+            includes.from("docs/packages.md")
+        }
+    }
 }
