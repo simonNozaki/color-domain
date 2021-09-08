@@ -25,6 +25,16 @@ class GeneralErrorAdvice: ResponseEntityExceptionHandler() {
     }
 
     /**
+     * バリデーション例外ハンドラ
+     * @param e
+     * @param request
+     */
+    @ExceptionHandler(AppValidationException::class)
+    fun handleAppValidationException(e: AppValidationException, request: WebRequest): ResponseEntity<Any> {
+        return super.handleExceptionInternal(e, Error(null, listOf(e.message)), HttpHeaders(), HttpStatus.BAD_REQUEST, request)
+    }
+
+    /**
      * 汎用エラーオブジェクト
      * TODO たぶんここに置くのよくないのであとで場所変える
      */
