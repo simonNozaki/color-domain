@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.RestController
 class AddColorRestController(private val addColorUseCase: AddColorUseCase) {
 
     @RequestMapping(
-        value = ["color/mixin"],
+        value = ["color/add"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         method = [RequestMethod.POST]
     )
     fun execute(@RequestBody req: AddColorRequest): AddColorResponse {
         // 変換判定
         if (!req.canConvert()) {
-            throw BadRequestException("オブジェクトの変換に失敗")
+            throw BadRequestException("validation.req.invalid_formant")
         }
 
         return addColorUseCase.execute(req).toResponse()
@@ -49,5 +49,4 @@ class AddColorRestController(private val addColorUseCase: AddColorUseCase) {
     private fun Color.toResponse(): AddColorResponse {
         return AddColorResponse(this.red.value + this.green.value + this.blue.value)
     }
-
 }

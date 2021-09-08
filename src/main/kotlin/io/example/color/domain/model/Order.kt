@@ -22,6 +22,5 @@ data class Order(
      * todo 永続化などもここで実行する
      */
     fun save() {
-
     }
 }

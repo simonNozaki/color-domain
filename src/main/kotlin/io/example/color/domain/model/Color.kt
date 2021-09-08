@@ -2,11 +2,10 @@ package io.example.color.domain.model
 
 import io.example.color.domain.type.RgbSaturation
 
-
 /**
  * 色を表現する値オブジェクト
  */
-data class Color (
+data class Color(
     /**
      * 16進数表現: R
      */

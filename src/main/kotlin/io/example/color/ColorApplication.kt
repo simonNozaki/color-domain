@@ -9,13 +9,13 @@ import org.springframework.context.annotation.ComponentScan
  */
 @SpringBootApplication
 @ComponentScan(
-	"io.example.color.domain",
-	"io.example.color.infrastructure",
-	"io.example.color.presentation",
-	"io.example.color.usecase"
+    "io.example.color.domain",
+    "io.example.color.infrastructure",
+    "io.example.color.presentation",
+    "io.example.color.usecase"
 )
 class ColorApplication
 
 fun main(args: Array<String>) {
-	runApplication<ColorApplication>(*args)
+    runApplication<ColorApplication>(*args)
 }
