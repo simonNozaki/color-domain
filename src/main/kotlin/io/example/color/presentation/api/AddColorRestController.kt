@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RestController
  * HTTPメソッドの受付、クライアントへの返却など最小限の責務を負う
  */
 @RestController
-class AddColorRestController(private val addColorUseCase: AddColorUseCase) {
+class AddColorRestController {
 
+    /**
+     * ユースケースの実行、レスポンスの返却
+     * @param req
+     */
     @RequestMapping(
         value = ["color/add"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],
@@ -29,7 +33,7 @@ class AddColorRestController(private val addColorUseCase: AddColorUseCase) {
             throw BadRequestException("validation.req.invalid_formant")
         }
 
-        return addColorUseCase.execute(req).toResponse()
+        return AddColorUseCase().execute(req).toResponse()
     }
 
     /**

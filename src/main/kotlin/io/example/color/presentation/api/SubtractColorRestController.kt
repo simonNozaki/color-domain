@@ -13,8 +13,11 @@ import java.lang.IllegalArgumentException
  * 減法混色REST Controller
  */
 @RestController
-class SubtractColorRestController(private val subtractColorUseCase: SubtractColorUseCase) {
+class SubtractColorRestController {
 
+    /**
+     * ユースケースの実行、レスポンスの返却
+     */
     @RequestMapping(
         value = ["color/subtract"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],
@@ -25,7 +28,7 @@ class SubtractColorRestController(private val subtractColorUseCase: SubtractColo
             throw IllegalArgumentException("validation.req.invalid_formant")
         }
 
-        val color = subtractColorUseCase.execute(req)
+        val color = SubtractColorUseCase().execute(req)
 
         return SubtractColorResponse(
             color.red.value + color.green.value + color.blue.value
