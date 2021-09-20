@@ -3,6 +3,7 @@ package io.example.color.domain.model
 import io.example.color.domain.type.FitEnum
 import io.example.color.domain.type.Lot
 import io.example.color.domain.type.SizeEnum
+import io.example.color.infrastructure.orm.OrderMapper
 
 /**
  * 注文オブジェクト。
@@ -19,8 +20,9 @@ data class Order(
 ) {
     /**
      * 受注する
-     * todo 永続化などもここで実行する
+     * @param orderMapper 永続化可能な注文オブジェクトレコードマッパー
      */
-    fun save() {
+    fun save(orderMapper: OrderMapper) {
+        orderMapper.persistent(this)
     }
 }

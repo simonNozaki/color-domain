@@ -6,6 +6,7 @@ import io.example.color.domain.type.FitEnum
 import io.example.color.domain.type.Lot
 import io.example.color.domain.type.RgbSaturation
 import io.example.color.domain.type.SizeEnum
+import io.example.color.infrastructure.orm.OrderMapper
 import io.example.color.presentation.dto.OrderClothesRequest
 import org.springframework.stereotype.Service
 
@@ -13,7 +14,9 @@ import org.springframework.stereotype.Service
  * オリジナルの洋服を注文するユースケース
  */
 @Service
-class OrderClothesUseCase {
+class OrderClothesUseCase(
+    private val orderMapper: OrderMapper
+) {
 
     /**
      * ユースケースの実行
@@ -34,6 +37,6 @@ class OrderClothesUseCase {
         )
 
         // 受注する
-        order.save()
+        order.save(orderMapper)
     }
 }
