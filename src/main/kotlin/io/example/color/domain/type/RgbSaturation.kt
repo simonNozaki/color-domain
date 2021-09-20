@@ -19,7 +19,7 @@ value class RgbSaturation (
         }
 
         val notHexes = listOf(this.value.substring(0, 1), this.value.substring(1, 2))
-            .filterNot { it.toIntOrNull(16) === null }
+            .filter { it.toIntOrNull(16) === null }
             .count()
 
         // 1個でも16進数ではない文字がある
@@ -34,9 +34,9 @@ value class RgbSaturation (
      */
     fun add(hex: RgbSaturation): RgbSaturation {
         val base = this.value.toInt(16)
-        val hex = hex.value.toInt(16)
+        val additionHex = hex.value.toInt(16)
 
-        val result = if(base + hex > "FF".toInt(16)) "FF".toInt(16) else base + hex
+        val result = if(base + additionHex > "FF".toInt(16)) "FF".toInt(16) else base + additionHex
 
         return RgbSaturation(Integer.toHexString(result))
     }
@@ -47,9 +47,9 @@ value class RgbSaturation (
      */
     fun subtract(hex: RgbSaturation): RgbSaturation {
         val base = this.value.toInt(16)
-        val hex = hex.value.toInt(16)
+        val subtractedHex = hex.value.toInt(16)
 
-        val result = if(base - hex < "00".toInt(16)) "00".toInt(16) else base - hex
+        val result = if(base - subtractedHex < "00".toInt(16)) "00".toInt(16) else base - subtractedHex
         val hexString = Integer.toHexString(result)
 
         return RgbSaturation(hexString)
