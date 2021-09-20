@@ -1,13 +1,12 @@
 package io.example.color.infrastructure.orm
 
 import io.example.color.domain.model.Order
-import org.springframework.stereotype.Repository
-import java.util.*
+import java.util.Date
+import java.util.UUID
 
 /**
  * 注文レコードインメモリマッパ
  */
-@Repository
 class InMemoryOrderMapper : OrderMapper {
 
     override fun persistent(order: Order) {
@@ -18,6 +17,6 @@ class InMemoryOrderMapper : OrderMapper {
 
         // ドメインオブジェクトと他に必要なID項目くっつけてDB用レコードに
 
-        println("永続化成功")
+        println("インメモリオブジェクト書き込み成功")
     }
 }
