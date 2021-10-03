@@ -1,16 +1,15 @@
 package io.example.color.domain.type
 
 import io.example.color.infrastructure.exception.AppValidationException
-import java.lang.IllegalArgumentException
 
 /**
  * RGB16進数彩度オブジェクト。
  * 16進数表記の色の要素となる。
  */
 @JvmInline
-value class RgbSaturation (
+value class RgbSaturation(
     val value: String
-        ) {
+) {
 
     // ガード節
     init {
@@ -36,9 +35,13 @@ value class RgbSaturation (
         val base = this.value.toInt(16)
         val additionHex = hex.value.toInt(16)
 
-        val result = if(base + additionHex > "FF".toInt(16)) "FF".toInt(16) else base + additionHex
+        val result = if (base + additionHex > "FF".toInt(16)) "FF".toInt(16) else base + additionHex
+        var hexString = Integer.toHexString(result)
+        if (hexString.length == 1) {
+            hexString += "0"
+        }
 
-        return RgbSaturation(Integer.toHexString(result))
+        return RgbSaturation(hexString)
     }
 
     /**
@@ -49,8 +52,11 @@ value class RgbSaturation (
         val base = this.value.toInt(16)
         val subtractedHex = hex.value.toInt(16)
 
-        val result = if(base - subtractedHex < "00".toInt(16)) "00".toInt(16) else base - subtractedHex
-        val hexString = Integer.toHexString(result)
+        val result = if (base - subtractedHex < "00".toInt(16)) "00".toInt(16) else base - subtractedHex
+        var hexString = Integer.toHexString(result)
+        if (hexString.length == 1) {
+            hexString += "0"
+        }
 
         return RgbSaturation(hexString)
     }
