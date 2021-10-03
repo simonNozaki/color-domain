@@ -1,16 +1,19 @@
 package io.example.color.worker
 
-import io.example.color.ColorApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
 @ComponentScan(
-    "io.example.color.worker.presentation"
+    "io.example.color.worker.presentation",
+    "io.example.color.domain",
+    "io.example.color.infrastructure",
+    "io.example.color.presentation",
+    "io.example.color.usecase"
 )
-class ColorWorkerApplication
+open class ColorWorkerApplication
 
 fun main(args: Array<String>) {
-    runApplication<ColorApplication>(*args)
+    runApplication<ColorWorkerApplication>(*args)
 }
