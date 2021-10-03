@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration
  */
 @Configuration
 @EnableBatchProcessing
-class TaskletConfiguration(
+open class TaskletConfiguration(
     private val jobBuilderFactory: JobBuilderFactory,
     private val stepBuilderFactory: StepBuilderFactory,
     private val addColorTasklet: AddColorTasklet
@@ -23,7 +23,7 @@ class TaskletConfiguration(
      * 加法混色タスクレットステップBean
      */
     @Bean
-    fun addColorTaskletStep(): Step {
+    open fun addColorTaskletStep(): Step {
         return this.stepBuilderFactory["addColorTasklet"]
             .tasklet(addColorTasklet)
             .build()
@@ -34,7 +34,7 @@ class TaskletConfiguration(
      */
     @Bean
     @Throws(Exception::class)
-    fun addColorTaskletJob(addColorTaskletStep: Step): Job {
+    open fun addColorTaskletJob(addColorTaskletStep: Step): Job {
         return jobBuilderFactory["addColorTaskletJob"]
             .listener(JobExecutionListener())
             .flow(addColorTaskletStep)
