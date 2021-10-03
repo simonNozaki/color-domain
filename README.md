@@ -16,6 +16,10 @@ build.gradle.kts
 settings.gradle.kts
 ```
 
+各レイヤの依存関係は図の通り
+
+![layring](docs/layering.png)
+
 ドメイン層・プレゼンテーション層はそれぞれ別のGradleプロジェクトであり、マルチプロジェクトとしてビルドされる。
 
 ## サンプルユースケース
