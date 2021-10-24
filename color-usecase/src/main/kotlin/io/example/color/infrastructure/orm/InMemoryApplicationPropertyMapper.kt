@@ -9,9 +9,9 @@ class InMemoryApplicationPropertyMapper : ApplicationPropertyMapper {
     // 本番用にはDBクライアントを用いたクエリ、マッピングの実装などをここに書く
     private val kvs = mapOf(
         Pair("ORDER.SIZE", "40") to "40",
-        Pair("ORDER.SIZE", "42") to "40",
-        Pair("ORDER.SIZE", "44") to "40",
-        Pair("ORDER.SIZE", "46") to "40",
+        Pair("ORDER.SIZE", "42") to "42",
+        Pair("ORDER.SIZE", "44") to "44",
+        Pair("ORDER.SIZE", "46") to "46",
         Pair("ORDER.FIT", "SKINNY") to "SKINNY",
         Pair("ORDER.FIT", "NORMAL") to "NORMAL",
         Pair("ORDER.FIT", "LOOSE") to "LOOSE",

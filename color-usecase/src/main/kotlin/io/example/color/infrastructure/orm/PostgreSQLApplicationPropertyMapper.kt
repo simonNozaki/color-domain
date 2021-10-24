@@ -1,23 +1,25 @@
 package io.example.color.infrastructure.orm
 
-import io.example.color.infrastructure.orm.ApplicationPropertyMapper
-import io.example.color.infrastructure.orm.generated.ApplicationPropertiesDynamicSqlSupport
-import org.apache.ibatis.session.SqlSession
-import org.mybatis.dynamic.sql.util.kotlin.elements.isEqualTo
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.*
+import io.example.color.infrastructure.exception.AppValidationException
+import io.example.color.infrastructure.orm.generated.ApplicationPropertiesMapper
+import io.example.color.infrastructure.orm.generated.selectByPrimaryKey
 
+/**
+ * PostgreSQL用アプリケーションプロパティ実装クラス
+ */
 class PostgreSQLApplicationPropertyMapper : ApplicationPropertyMapper {
-    private val ap = ApplicationPropertiesDynamicSqlSupport.ApplicationProperties
-
     override fun get(group: String, key: String): Pair<String, String> {
-        val selectStatementProvider = select (
-            ap.allColumns()
-        ) {
-            from(ap)
-            where(ap.keyGroup, isEqualTo(group))
-            and(ap.key, isEqualTo(key))
+        // pkで検索
+        val result = SqlSessionFactory.getSqlSessionFactory().openSession().use {
+            return@use it.getMapper(ApplicationPropertiesMapper::class.java)
+                .selectByPrimaryKey(group, key)
+        }
+        if (result == null) {
+            throw AppValidationException("検索結果がありません => group: $group, key: $key")
         }
 
-        return "" to ""
+        println("キー検索結果 => $result")
+
+        return "$group$key" to result.value!!
     }
 }
