@@ -13,10 +13,9 @@ import org.springframework.stereotype.Component
  * 加法混色タスクレット実装クラス
  */
 @Component
-@StepScope
-class AddColorTasklet (
+open class AddColorTasklet(
     private val addColorUseCase: AddColorUseCase
-    ) : Tasklet {
+) : Tasklet {
     override fun execute(contribution: StepContribution, chunkContext: ChunkContext): RepeatStatus {
 
         val req = AddColorRequest("ff0000", "00ff00")
