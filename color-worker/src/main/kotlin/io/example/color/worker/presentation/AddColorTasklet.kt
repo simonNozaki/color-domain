@@ -3,7 +3,6 @@ package io.example.color.worker.presentation
 import io.example.color.presentation.dto.AddColorRequest
 import io.example.color.usecase.AddColorUseCase
 import org.springframework.batch.core.StepContribution
-import org.springframework.batch.core.configuration.annotation.StepScope
 import org.springframework.batch.core.scope.context.ChunkContext
 import org.springframework.batch.core.step.tasklet.Tasklet
 import org.springframework.batch.repeat.RepeatStatus
