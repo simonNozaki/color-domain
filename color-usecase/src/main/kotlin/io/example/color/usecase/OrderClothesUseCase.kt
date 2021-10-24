@@ -1,12 +1,9 @@
 package io.example.color.usecase
 
 import io.example.color.domain.model.Color
-import io.example.color.domain.model.Order
-import io.example.color.domain.type.FitEnum
+import io.example.color.domain.repository.OrderRepository
 import io.example.color.domain.type.Lot
 import io.example.color.domain.type.RgbSaturation
-import io.example.color.domain.type.SizeEnum
-import io.example.color.infrastructure.orm.OrderMapper
 import io.example.color.presentation.dto.OrderClothesRequest
 import org.springframework.stereotype.Service
 
@@ -15,7 +12,7 @@ import org.springframework.stereotype.Service
  */
 @Service
 class OrderClothesUseCase(
-    private val orderMapper: OrderMapper
+    private val orderRepository: OrderRepository
 ) {
 
     /**
@@ -29,14 +26,9 @@ class OrderClothesUseCase(
         )
 
         // 発注の生成
-        val order = Order(
-            Lot(req.lot),
-            SizeEnum.valueOf(req.size.toString()),
-            color,
-            FitEnum.valueOf(req.fit)
-        )
+        val order = this.orderRepository.add(color, Lot(req.lot), req.fit, req.size.toString())
 
         // 受注する
-        order.save(orderMapper)
+        this.orderRepository.persistent(order)
     }
 }

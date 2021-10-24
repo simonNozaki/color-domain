@@ -1,6 +1,6 @@
 package io.example.color.presentation.api
 
-import io.example.color.infrastructure.orm.OrderMapper
+import io.example.color.domain.repository.OrderRepository
 import io.example.color.presentation.dto.OrderClothesRequest
 import io.example.color.usecase.OrderClothesUseCase
 import org.springframework.http.MediaType
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 class OrderClothesRestController(
-    private val orderMapper: OrderMapper
+    private val orderRepository: OrderRepository
 ) {
 
     @RequestMapping(
@@ -24,6 +24,6 @@ class OrderClothesRestController(
     )
     fun execute(@RequestBody req: OrderClothesRequest) {
         // ユースケースの実行
-        OrderClothesUseCase(orderMapper).execute(req)
+        OrderClothesUseCase(this.orderRepository).execute(req)
     }
 }
