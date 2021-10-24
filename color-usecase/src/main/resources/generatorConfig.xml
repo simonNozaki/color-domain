@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="/Users/SimonNozaki/workspace/project/apps/color/color-usecase/libs/postgresql-42.3.0.jar"/>
+
+    <context id="user-context" targetRuntime="MyBatis3Kotlin">
+        <jdbcConnection
+                driverClass="org.postgresql.Driver"
+                connectionURL="jdbc:postgresql://localhost:5432/color_domain_user"
+                userId="color_domain_user"
+                password="color_domain_user"
+        />
+
+        <!-- エンティティ -->
+        <javaModelGenerator
+                targetPackage="io.example.color.infrastructure.orm.generated"
+                targetProject="/Users/SimonNozaki/workspace/project/apps/color/color-usecase/src/main/kotlin" />
+
+        <!-- Mapperクラス  -->
+        <javaClientGenerator
+                targetPackage="io.example.color.infrastructure.orm.generated"
+                targetProject="/Users/SimonNozaki/workspace/project/apps/color/color-usecase/src/main/kotlin"
+        />
+
+        <table
+                schema="public"
+                tableName="application_properties"
+        />
+    </context>
+</generatorConfiguration>
